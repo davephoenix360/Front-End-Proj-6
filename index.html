@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript">
+    function doForm() {
+    
+        var data = document.getElementById('frm');
+        let name = data.elements[1].value;
+        let p_num = data.elements[2].value;
+        let email = data.elements[3].value;
+        if(testName(name))
+        {
+            if(testNum(p_num))
+            {
+                alert('Ok');
+                let content = "Name: "+name+"\t"+"Phone Number: "+p_num+"\t"+"Email: "+email;
+                
+            }
+            else{
+                alert('Please enter a phone number in the format shown!!!')
+            }
+        }
+        else{
+            alert('Please type your name correctly!!');
+        }
+    }
+
+    function testName(name) {
+        let regex = /[a-zA-Z]+ [A-Za-z]+[\-A-Za-z]+/g;
+        let result = regex.test(name);
+        return result;
+    }
+
+    function testNum(p_num) {
+        let regex = /^\+[0-9]{13}$/g;
+        let result = regex.test(p_num);
+        return result;
+    }
+  </script>
+  
+  <title>User Data Form</title>
+</head>
+<body>
+    <form id="frm" target="_self">
+        <fieldset>
+            <legend>User Form</legend>
+            <label for="name">Full name:</label><br/>
+            <input type="text" id="name" name="name" placeholder="First Surname"  required/><br/>
+            <label for="number">Phone number:</label><br/>
+            <input type="tel" id="number" name="number" 
+            minlength="11" maxlength="14" placeholder="+2348071345648" required/><br/>
+            <label for="mail">Email:</label><br>
+            <input type="email" id="mail" name="mail" required/><br/><br/>
+            <input type="submit"  onclick="doForm()" value="Submit"/>
+        </fieldset>
+    </form>
+    <p id="demo"></p>
+
+</body>
+</html>
